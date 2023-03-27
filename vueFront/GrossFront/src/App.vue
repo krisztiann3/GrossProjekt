@@ -44,7 +44,7 @@ if (!localStorage.getItem('token')) {
 <style>
 
 .r-link {
-  color: black;
+  color: #E9F3DE;
   text-decoration: none;
   font-size: large;
 }
