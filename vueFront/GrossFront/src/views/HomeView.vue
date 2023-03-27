@@ -64,6 +64,12 @@ const logout = async () => {
 </template>
 
 <style scoped>
+p,h3{
+  color: white;
+}
+body{
+  color: white;
+}
 .r-link {
   color: white;
   text-decoration: none;
