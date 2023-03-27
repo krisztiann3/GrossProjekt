@@ -61,7 +61,7 @@ const logout = async () => {
   </div>
 </template>
 <style>
-* {
+body{
   background-color: black;
   color: white;
 }
