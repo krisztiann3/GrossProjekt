@@ -15,7 +15,7 @@ if (!localStorage.getItem('token')) {
     <div class="row">
       <div class="col">
         <RouterLink to="/" class="r-link">
-          Főoldal
+          Feloldal
         </RouterLink>
         <RouterLink to="/termekek/polok" class="r-link">
           Gross pólók
