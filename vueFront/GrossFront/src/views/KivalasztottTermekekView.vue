@@ -1,7 +1,9 @@
-<script setup>
+<script setup >
 import axios from 'axios'
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Swal from 'sweetalert2';
+
 
 const termekek = ref([]);
 const loading = ref(false)
@@ -51,7 +53,8 @@ const kosarbaHelyez = async (id) => {
             osszeg: id.osszeg
         })
     } Swal.fire(
-        'Hozzáadva a kosaradhoz',
+        'Siker!',
+        'A termék kosaradba került',
         'success'
     )
 }
@@ -72,13 +75,6 @@ const kosarbaHelyez = async (id) => {
                 <div class="row">
                     <div class="col">
                         <h1>{{ $route.params.id }}</h1>
-                        <div v-if="kosar.length == 0" id="state">
-                            Kosarad üres
-                        </div>
-                        <div v-else-if="kosar.length > 0">
-                            Kosaradba helyezve
-                        </div>
-
                         <div v-for="termek in termekek" :key="termekek.id">
                             <div class="card" style="width: 18rem; border-width: 2.7px; border-color: lightgrey;">
                                 <img src="/gorsskid.jpg" class="card-img-top" alt="...">
@@ -103,7 +99,9 @@ const kosarbaHelyez = async (id) => {
     </div>
 </template>
 <style scoped>
-
+h1{
+    color: white;
+}
 #termek {
     margin-left: 37%;
 }

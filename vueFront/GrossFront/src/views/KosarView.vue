@@ -51,7 +51,8 @@ const torol = async (id) => {
             kosar.value[i].mennyiseg -= 1;
         }
     } Swal.fire(
-        'Termék törölve a kosaradból',
+        'Törölve!',
+        'a termék törlésre került kosaradból',
         'success'
     )
 }
@@ -124,6 +125,9 @@ const uresE = async (kosar) => {
     width: 140px;
     height: 160px;
     margin-bottom: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D7DAE5;
 }
 
 #megjelenit {
@@ -158,21 +162,25 @@ const uresE = async (kosar) => {
 #meret {
     padding: 2%;
     display: inline-block;
+    color: #D7DAE5;
 }
 
 #menny {
     padding: 2%;
     display: inline-block;
+    color: #D7DAE5;
 }
 
 #megnev {
     padding: 2%;
     display: inline-block;
+    color: #D7DAE5;
 }
 
 #ar {
     padding: 2%;
     display: inline-block;
+    color: #D7DAE5;
 }
 
 #logout {
@@ -190,5 +198,10 @@ const uresE = async (kosar) => {
   border: 2px solid white;
   font-weight: bold;
   height: 40px;
+}
+</style>
+<style scoped>
+h1{
+    color: white;
 }
 </style>

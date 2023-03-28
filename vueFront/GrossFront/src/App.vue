@@ -15,24 +15,26 @@ if (!localStorage.getItem('token')) {
     <div class="row">
       <div class="col">
         <RouterLink to="/" class="r-link">
-          Feloldal
+        Főoldal 
         </RouterLink>
+        &nbsp;
         <RouterLink to="/termekek/polok" class="r-link">
           Gross pólók
         </RouterLink>
-
+        &nbsp;
         <RouterLink to="/termekek/puloverek" class="r-link">
           Gross Puloverek
         </RouterLink>
-
+        &nbsp;
         <RouterLink to="/termekek/nadragok" class="r-link">
           Gross Nadrágok
         </RouterLink>
-
+        &nbsp;
         <RouterLink to="/kosar" class="r-link">
           Kosarad
         </RouterLink>
       </div>
+
     </div>
   </div>
 
@@ -41,12 +43,15 @@ if (!localStorage.getItem('token')) {
   </div>
 </template>
 
-<style>
-
+<style >
+body{
+  background-color:black;
+}
 .r-link {
-  color: #E9F3DE;
+  color: #67597A;
+  font-weight: bold;
   text-decoration: none;
-  font-size: large;
+  font-size: medium;
 }
 
 .r-link:hover {
@@ -59,26 +64,31 @@ if (!localStorage.getItem('token')) {
   border-style: solid;
   text-align: center;
   height: 65px;
-  padding: 2%;
+
 }
 
-.about {
-  border-top: 0px;
-  border-style: solid;
-  padding: 15px;
-  height: 25%;
-  display: block;
+.row {
+  padding-right: 2%;
 }
 
 #mainNav {
+  color:#AEB4A9 ;
+  background-color: #D7DAE5;
   display: block;
   text-align: center;
   margin-top: 20px;
-  margin-left: 90px;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
+
 
 #kijel {
   display: inline-block;
 }
-
+</style>
+<style scoped>
+  body{
+    color: white;
+  }
 </style>

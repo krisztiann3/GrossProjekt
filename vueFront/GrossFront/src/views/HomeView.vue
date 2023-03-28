@@ -17,11 +17,12 @@ const logout = async () => {
 </script>
 
 <template>
+<div>
   <br>
   <form action="" @submit.prevent="logout" id="logout">
     <button type="submit" id="ki">Kijelentkezés</button>
   </form>
-  <div style="width: 100%;">
+  <div style="width: 100%;" id="kep">
     <img id="logo" src="../../kepek/grosskidz_logo.jpg" alt="">
   </div>
   <br>
@@ -59,13 +60,16 @@ const logout = async () => {
       </div>
     </div>
   </div>
+</div>
 </template>
-<style>
-body{
-  background-color: black;
+
+<style scoped>
+p,h3{
   color: white;
 }
-
+body{
+  color: white;
+}
 .r-link {
   color: white;
   text-decoration: none;
@@ -97,7 +101,13 @@ body{
   height: 65px;
   padding: 2%;
 }
+body{
+  background-color: black;
+  color: white;
+}
+</style>
 
+<style>
 #about {
   border-top: 0px;
   border-style: solid;
@@ -130,10 +140,12 @@ body{
 }
 
 #logo {
-  height: 300px;
+  height: 302px;
   width: 300px;
   display: block;
-  margin-left: 810px;
+  margin-left: 670px;
+  border-style: solid;
+  border-width: 1px;
 }
 
 #spotify {
