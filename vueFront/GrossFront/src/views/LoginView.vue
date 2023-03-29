@@ -49,41 +49,64 @@
 <template>
 <br>
 <div class="row">
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col">
+    <div class="col-lg-12">
+        <label>Belépés</label>
         <div id="login">
-            <h5>Belépés</h5>
-    <form @submit.prevent="login">
-        <input type="text" v-model="felhnev" placeholder="Felhasználó név:"><br><br><br>
-        <input type="password" v-model="jelszo" placeholder="Jelszó:"><br><br>
-        <button type="submit">Bejelentkezés</button>
-    </form>
-    <RouterLink to="/register" class="r-link" id="registLink">
-     Vagy regisztrálj...
-    </RouterLink>
+            <div id="innerLogin">
+                <br>
+                <form @submit.prevent="login" class="responsive" >
+                    
+                    <input type="text" v-model="felhnev" placeholder="Felhasználó név:"><br><br>
+                    <input type="password" v-model="jelszo" placeholder="Jelszó:"><br><br>
+                    <button type="submit">Bejelentkezés</button>
+                </form><br>
+                <RouterLink to="/register" class="r-link" id="registLink">
+                Vagy regisztrálj...
+                </RouterLink>
+            </div>
+            <br>
         </div>
     </div>
-    <div class="col"></div>
-    <div class="col"></div>
 </div>
 </template>
 <style scoped>
-    h5{
-    text-align: left;
+    body{
+    max-width: 100%;
+    }
+    /* h4{
+        color: whitesmoke;
+    } */
+    #innerLogin{
+        border-radius: 25px;
+        background-color: #a09cb0;
+        padding-bottom: 5px;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 2px;
+        
+    }
+    label{
+    float: left;
+    color: #f2f4f3;
+    font-weight: bolder;
+    font-size: 30px;
     padding-left: 4%;
-    padding-top:2% ;
+    padding-top: 9px;
     }
     #login{
     border-radius: 25px;
     background-color: #3D5467;
     text-align: center;
-    padding-top: 5%;
-    width: 400px;
-    height: 300px;
+    padding-top: 4%;
+    min-width: 420px;
+    min-height: 320px;
     }
     #registLink{
+        font-size: 20px;
         padding-top: 2%;
-        padding-bottom: 2%;
+        padding-bottom: 6%;
+        color:#bdede0;
+        margin-bottom: 2px;
     }
+
 </style>
