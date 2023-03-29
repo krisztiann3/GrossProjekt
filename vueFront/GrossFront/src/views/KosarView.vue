@@ -33,7 +33,11 @@ const termek = async (id) => {
 const megrendeles = async () => {
     await axios.post('/vasarlas', {
         kosar: JSON.parse(localStorage.getItem("kosar"))
-    })
+    }),Swal.fire(
+        'Siker!',
+        'Rendelésedet fogadtuk, emailben értesítünk a továbbiakról.',
+        'success'
+    )
 }
 
 watch(kosar, (torolKosar) => {
@@ -67,11 +71,6 @@ const uresE = async (kosar) => {
 
 <template>
     <div id="shoppingcart">
-        <div id="logout">
-            <form action="" @submit.prevent="logout" id="logout">
-                <button type="submit" id="ki">Kijelentkezés</button>
-            </form>
-        </div>
         <h1>Kosarad</h1>
         <div v-if="kosar.value == null">
             <p aria-errormessage="Kosarad üres"></p>

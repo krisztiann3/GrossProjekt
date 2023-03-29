@@ -1,9 +1,25 @@
 <script setup>
 import axios from 'axios';
+import { onMounted,onBeforeMount } from 'vue';
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 
 
 const router = useRouter();
+
+const logout = async () => {
+  await axios.post('/logout')
+  localStorage.clear('token')
+  router.push('/login')
+}
+
+const vanE = ()=>{
+  if(localStorage.getItem('token') == null){
+    return false;
+  }else{
+    return true;
+  }
+}
+
 
 if (!localStorage.getItem('token')) {
   router.push('/login')
@@ -11,11 +27,12 @@ if (!localStorage.getItem('token')) {
 </script>
 
 <template>
-  <div id="mainNav">
+  <div>
     <div class="row">
-      <div class="col">
+      <div class=" col-lg-12 col-md-12">
+      <div id="mainNav">
         <RouterLink to="/" class="r-link">
-        Főoldal 
+          Főoldal
         </RouterLink>
         &nbsp;
         <RouterLink to="/termekek/polok" class="r-link">
@@ -33,11 +50,13 @@ if (!localStorage.getItem('token')) {
         <RouterLink to="/kosar" class="r-link">
           Kosarad
         </RouterLink>
+        &nbsp;
+    <label @click="logout" v-if="vanE()" id="kijel">Kijelentkezés</label>
       </div>
 
     </div>
   </div>
-
+</div>
   <div>
     <RouterView />
   </div>
@@ -45,13 +64,13 @@ if (!localStorage.getItem('token')) {
 
 <style >
 body{
-  background-color:black;
+  background-color: black;
 }
 .r-link {
   color: #67597A;
   font-weight: bold;
   text-decoration: none;
-  font-size: medium;
+  font-size: large;
 }
 
 .r-link:hover {
@@ -72,23 +91,43 @@ body{
 }
 
 #mainNav {
+  padding-top: 20px;
   color:#AEB4A9 ;
   background-color: #D7DAE5;
-  display: block;
+  /* display: block; */
   text-align: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   border-radius: 20px;
   margin-left: 5px;
   margin-right: 5px;
+  width: 100%;
+  height: 165%;
 }
 
 
 #kijel {
+  color: #67597A;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: medium;
   display: inline-block;
 }
 </style>
 <style scoped>
+#ki {
+  float: right;
+  margin-right: 15px;
+  margin-top: 15px;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+  font-weight: bold;
+  height: 40px;
+}
   body{
+    width: 100%;
     color: white;
+    display: flex;
+  background-color:black;
   }
 </style>

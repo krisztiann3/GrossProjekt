@@ -36,16 +36,12 @@ const logout = async () => {
 
 <template>
     <div>
-        <div>
-            <form action="" @submit.prevent="logout" id="logout">
-                <button type="submit" id="ki">Kijelentkezés</button>
-            </form>
-        </div>
         <div id="visual">
             <div v-if="loading == true">
-                <!-- termékek kiiratása -->
                 <div class="row">
-                    <div class="col-3 " v-for="termek in termekek" :key="termekek.id">
+                    
+                    <div class="col-lg-3 col-md-6 " v-for="termek in termekek" :key="termekek.id">
+                        <br>
                         <div class="card" style="width: 18rem;">
                             <img src="/gorsskid.jpg" class="card-img-top" alt="...">
                             <div class="card-body">

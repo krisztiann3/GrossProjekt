@@ -65,11 +65,6 @@ const kosarbaHelyez = async (id) => {
 
 <template>
     <div>
-        <div id="logout">
-            <form action="" @submit.prevent="logout" id="logout">
-                <button type="submit" id="ki">Kijelentkezés</button>
-            </form>
-        </div>
         <div v-if="loading == true">
             <div id="termek">
                 <div class="row">
