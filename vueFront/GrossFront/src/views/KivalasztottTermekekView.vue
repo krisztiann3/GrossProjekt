@@ -3,6 +3,7 @@ import axios from 'axios'
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
+import router from '../router';
 
 
 const termekek = ref([]);
@@ -10,6 +11,7 @@ const loading = ref(false)
 const route = useRoute()
 const Router = useRouter()
 const kosar = ref([])
+const stat = ref()
 
 const logout = async () => {
     await axios.post('/logout')
@@ -28,6 +30,10 @@ onMounted(async () => {
     })
 })
 
+onMounted(async()=>{
+    stat.value = JSON.parse(localStorage.getItem("token"))
+})
+
 watch(kosar, (newkosar) => {
     localStorage.setItem("kosar", JSON.stringify(newkosar))
 }, {
@@ -37,7 +43,7 @@ watch(kosar, (newkosar) => {
 //kosárba helyezés
 const kosarbaHelyez = async (id) => {
     const newitem = ref(0);
-
+    if(stat.value != null){
     for (let i = 0; i < kosar.value.length; i++) {
         if (kosar.value[i].id == id.id && kosar.value[i].megnevezes == id.megnevezes) {
             kosar.value[i].mennyiseg += 1;
@@ -52,11 +58,20 @@ const kosarbaHelyez = async (id) => {
             mennyiseg: 1,
             osszeg: id.osszeg
         })
-    } Swal.fire(
+    }}Swal.fire(
         'Siker!',
         'A termék kosaradba került',
         'success'
     )
+        if(stat.value == null){
+        Swal.fire(
+            'Jelentkezz be!',
+            'A vásárláshoz kérünk jelentkezz be!',
+            'warning'
+        )
+        router.push('/login')
+        
+    }
 }
 
 

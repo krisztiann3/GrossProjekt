@@ -32,13 +32,18 @@ const termek = async (id) => {
 
 const megrendeles = async () => {
     await axios.post('/vasarlas', {
-        kosar: JSON.parse(localStorage.getItem("kosar"))
-    }),Swal.fire(
+        kosar: JSON.parse(localStorage.getItem("kosar")),
+        
+    }
+    ),Swal.fire(
         'Siker!',
         'Rendelésedet fogadtuk, emailben értesítünk a továbbiakról.',
         'success'
     )
+    kosar[i].mennyiseg == 0;
+    
 }
+
 
 watch(kosar, (torolKosar) => {
     localStorage.setItem("kosar", JSON.stringify(torolKosar))
