@@ -39,20 +39,18 @@ const logout = async () => {
         <div id="visual">
             <div v-if="loading == true">
                 <div class="row">
-                    
-                    <div class="col-lg-3 col-md-6 " v-for="termek in termekek" :key="termekek.id">
-                        <br>
-                        <div class="card" style="width: 18rem;">
-                            <img src="/gorsskid.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ termek.megnevezes }}</h5>
-                                <p class="card-text">Méret: {{ termek.meret }}</p>
-                                <p class="card-text">Some quick example text to build on the card
-                                    title and make up the bulk of the card's content.</p>
-                                <button type="submit" class="btn btn-primary" @click="termekMegtekint(termek.id)">Termék
-                                    megtekintése</button>
+                        <div class="col-lg-3 col-md-6 " id="vis" v-for="termek in termekek" :key="termekek.id">
+                            <div class="card" style="width: 20rem; padding: 2%;">
+                                <img src="/gorsskid.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ termek.megnevezes }}</h5>
+                                    <p class="card-text">Méret: {{ termek.meret }}</p>
+                                    <p class="card-text">Some quick example text to build on the card
+                                        title and make up the bulk of the card's content.</p>
+                                    <button type="submit" class="btn btn-primary" @click="termekMegtekint(termek.id)">Termék
+                                        megtekintése</button>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -64,7 +62,12 @@ const logout = async () => {
     </div>
 </template>
 <style scope>
-
+body{
+    background-color: rgb(35, 34, 34);
+}
+#vis{
+    padding-left: 4%;
+}
 .row {
     padding: 25px;
 }
@@ -74,20 +77,19 @@ const logout = async () => {
 }
 
 #logout {
-  display: block;
-  align-self: center;
-  font-weight: bold;
+    display: block;
+    align-self: center;
+    font-weight: bold;
 }
 
 #ki {
-  float: right;
-  margin-right: 15p;
-  margin-top: 15px;
-  color: white;
-  background-color: black;
-  border: 2px solid white;
-  font-weight: bold;
-  height: 40px;
+    float: right;
+    margin-right: 15p;
+    margin-top: 15px;
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    font-weight: bold;
+    height: 40px;
 }
-
 </style>
