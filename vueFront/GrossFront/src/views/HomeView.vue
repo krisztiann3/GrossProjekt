@@ -28,7 +28,7 @@ const router = useRouter();
         <div class="col col-lg-4 col-md-4 col-sm-12 ">
           <iframe style="border-radius:12px"
             src="https://open.spotify.com/embed/playlist/7mIA2wJilXJVFsV09Xcvmc?utm_source=generator&theme=0" width="100%"
-            height="352" frameBorder="0" allowfullscreen="" id="spotify"
+            height="352" frameBorder="" allowfullscreen="" id="spotify"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div id="glog" class="col col-lg-4 col-md-4 col-sm-12">
@@ -179,6 +179,9 @@ body {
 #spotify {
   display: flex;
   height: 450px;
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
 }
 
 #paragraph {

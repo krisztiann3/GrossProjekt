@@ -49,7 +49,6 @@ app.use(cors());
 const query = util.promisify(db.query).bind(db);
 
 
-
     // Blacklist tokenek kezelése
 async function auth(req,res,next){
     const token = req.headers.authorization
@@ -235,7 +234,8 @@ app.post('/vasarlas',auth,async(req,res) =>{
     .toString(16)
     .substring(1);
 
-
+    
+    
 
    //email-pdf rész
     var mailOptions = {
@@ -250,30 +250,31 @@ app.post('/vasarlas',auth,async(req,res) =>{
     }],
     }
 
-
+    
 
     // pdf létrehozása
     doc.pipe(fs.createWriteStream(`./temp/pdf/${pfdId}.pdf`))
 
     // Hozzáadott elemek formázása
     doc.fontSize(25)
+    
     .text('GrossKidz számlája!', 120, 120)
     .underline(120, 120, 360, 27, { color: '#000000' })
     
+    for (let i = 0; i < kosar.length; i++) {        
+            doc.scale(0.6)
+            .text('Termék megnevezése:',220+i,520+i,120+i)
+            .text(kosar[i].megnevezes)
+            .text('Termék mennyisége:')
+            .text(kosar[i].mennyiseg)
+            .text('Összege:')
+            .text(kosar[i].osszeg * kosar[i].mennyiseg +'Ft')
+            .restore();
+        }
+       
+    
 
-    for (let i = 0; i < kosar.length; i++) {
-        doc.scale(0.6)
-
-        .text('Termék megnevezése:',220+i,520+i,120+i)
-        .text(kosar[i].megnevezes)
-        .text('Termék mennyisége:')
-        .text(kosar[i].mennyiseg)
-        .text('Összege:')
-        .text(kosar[i].osszeg * kosar[i].mennyiseg +'Ft')
-        .restore();
-    }
-
-
+    doc.underline(120, 120, 360, 27, { color: '#000000' })
     doc.end();
 
     //email küldés pdf-el, pdf törlés
