@@ -145,7 +145,8 @@ const uresE = async (kosar) => {
 #end {
     float: right;
 
-    padding-top: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #kep {
