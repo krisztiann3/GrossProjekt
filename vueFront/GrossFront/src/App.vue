@@ -1,9 +1,10 @@
 <script setup>
 import axios from 'axios';
-import { onMounted,onBeforeMount } from 'vue';
+import { ref } from 'vue';
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 
 
+const user = ref('')
 const router = useRouter();
 
 const logout = async () => {
@@ -13,6 +14,14 @@ const logout = async () => {
 }
 
 const vanE = ()=>{
+  if(localStorage.getItem('token') == null){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+const isLoggedin = () =>{
   if(localStorage.getItem('token') == null){
     return false;
   }else{

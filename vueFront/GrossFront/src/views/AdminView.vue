@@ -33,13 +33,6 @@ const feltolt = async () => {
 
 <template>
  <div>
-    <div id="mainV">
-        <div id="logout">
-            <form action="" @submit.prevent="logout">
-                <button type="submit">Kijelentkezés</button>
-            </form>
-        </div>
-    </div>
 <br>
 <div id="main">
     <div id="termFe">

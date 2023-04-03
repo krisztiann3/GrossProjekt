@@ -13,6 +13,7 @@ const fs = require('fs');
 const { text } = require('pdfkit');
 const router = express.Router();
 
+
 const db = mySql.createPool({
     host: process.env.db_hostname,
     user: process.env.db_user,
@@ -260,7 +261,9 @@ app.post('/vasarlas',auth,async(req,res) =>{
     .text('GrossKidz számlája!', 120, 120)
     .underline(120, 120, 360, 27, { color: '#000000' })
     
-    for (let i = 0; i < kosar.length; i++) {        
+    .moveDown();
+    for (let i = 0; i < kosar.length; i++) {     
+            doc.moveDown();  
             doc.scale(0.6)
             .text('Termék megnevezése:',220+i,520,)
             .text(kosar[i].megnevezes,)

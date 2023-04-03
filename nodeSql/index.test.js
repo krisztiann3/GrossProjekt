@@ -1,40 +1,32 @@
-const assert = require('chai').assert;
+jest.mock('express',()=>{
+    return {
+        Router: jest.fn(()=>{
+            return{
+                get: jest.fn(),
+                post: jest.fn()
+            };
+        })
+    }
+})
+
+
 const request = require('supertest');
-const {app} = require('./index');
+const app = require('./index');
 
+test('returns 200 OK and success message for valid credentials', () => {
+  const credentials = { username: 'valid_username', password: 'valid_password' };
+  return request(app)
+    .post('/login')
+    .send(credentials)
+    .expect(200)
+    .expect('Logged in successfully!');
+});
 
-
-describe('login', function() {
-    it('Megfelelő adatok estén kiosztja a tokent és a bejelentkezés sikeres', function(done) {
-      request(app)
-        post('/login')
-        .send({ nev: 'test', jelszo: 'password' })
-        .end(function(err, res) {
-          assert.equal(res.status, 200);
-          assert.isString(res.body.token);
-          done();
-        });
-    });
-  
-    it('Error-t dob vissza ha a bejelentkezés sikertelen', function(done) {
-      request(app)
-        .post('localhost:8080/login/')
-        .send({ nev: 'test', jelszo: 'wrongpassword' })
-        .end(function(err, res) {
-          assert.equal(res.status, 401);
-          assert.equal(res.body.message, 'Sikertelen bejelentkezés');
-          done();
-        });
-    });
-  
-    it('Error-t dob vissza ha hiányoznak adatok', function(done) {
-      request(app)
-        .post('/login')
-        .end(function(err, res) {
-          assert.equal(res.status, 400);
-          assert.equal(res.body.message, 'hibás adatok');
-          done();
-        });
-    });
-  });
-  
+test('returns 401 Unauthorized for invalid credentials', () => {
+  const credentials = { username: 'invalid_username', password: 'invalid_password' };
+  return request(app)
+    .post('/login')
+    .send(credentials)
+    .expect(401)
+    .expect('Invalid credentials.');
+});

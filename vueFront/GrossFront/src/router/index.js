@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: '/',
       meta:{
-        requiresAuth:true     //majd a vásárlási felület mert védett útvonal
+        requiresAuth:false     //majd a vásárlási felület mert védett útvonal
       },
       name: 'home',
       component: HomeView

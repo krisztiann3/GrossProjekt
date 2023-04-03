@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2'
+import { toValidAssetId } from '@vue/compiler-core';
 
 
 const kosar = ref([])
@@ -30,15 +31,24 @@ const termek = async (id) => {
     })
 }
 
+var vasaroltE = '';
 const megrendeles = async () => {
     await axios.post('/vasarlas', {
-        kosar: JSON.parse(localStorage.getItem("kosar"))
+        kosar: JSON.parse(localStorage.getItem("kosar")),
+        vasaroltE:'vasarolt'
+
     }),Swal.fire(
         'Siker!',
         'Rendelésedet fogadtuk, emailben értesítünk a továbbiakról.',
         'success'
     )
+    
+    if(vasaroltE != null){
+    console.log('vasarolt')
+    localStorage.removeItem("kosar")
+    }
 }
+
 
 watch(kosar, (torolKosar) => {
     localStorage.setItem("kosar", JSON.stringify(torolKosar))
@@ -95,7 +105,7 @@ const uresE = async (kosar) => {
             <div id="bottom"></div>
             <div id="end">
                 <div>
-                    <button @click="megrendeles()" type="submit">Megrendelés</button>
+                    <button @click="megrendeles(),check()" type="submit">Megrendelés</button>
                 </div>
             </div>
         </div>
@@ -145,7 +155,8 @@ const uresE = async (kosar) => {
 #end {
     float: right;
 
-    padding-top: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #kep {
