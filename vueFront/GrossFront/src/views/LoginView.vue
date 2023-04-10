@@ -3,7 +3,7 @@
     import axios from 'axios'
     import {useRouter} from 'vue-router'
     import Swal from 'sweetalert2'
-
+    
 
     const felhnev = ref('');
     const jelszo = ref('');
@@ -14,6 +14,7 @@
     const tokenE = ref('')
 
     const login = async()=>{
+        console.log("Login request")
         await axios.post('/login',{
             nev: felhnev.value,
             jelszo: jelszo.value,
@@ -21,6 +22,7 @@
             adminJel: jelszo.value
         }).then(
             function(response){
+                
                 if(felhnev.value != adminNev.value){
                 localStorage.setItem('token',JSON.stringify(response.data.token))
                 console.log(response.data.token)
@@ -40,6 +42,7 @@
         ).catch(
             function(error) {
                 console.log(error)
+                
             }
         )
     }
