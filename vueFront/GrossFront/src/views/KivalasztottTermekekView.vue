@@ -30,20 +30,30 @@ onMounted(async () => {
     })
 })
 
-onMounted(async()=>{
-    stat.value = JSON.parse(localStorage.getItem("token"))
-})
-
 watch(kosar, (newkosar) => {
     localStorage.setItem("kosar", JSON.stringify(newkosar))
 }, {
     deep: true
 })
 
+onMounted(async()=>{
+    stat.value = JSON.parse(localStorage.getItem("token"))
+})
+
+
 //kosárba helyezés
 const kosarbaHelyez = async (id) => {
     const newitem = ref(0);
-    if(stat.value != null){
+    if(stat.value == null){
+        Swal.fire(
+            'Jelentkezz be!',
+            'A vásárláshoz kérünk jelentkezz be!',
+            'warning'
+        )
+        router.push('/login')
+        
+    }
+    else if(stat.value != null){
     for (let i = 0; i < kosar.value.length; i++) {
         if (kosar.value[i].id == id.id && kosar.value[i].megnevezes == id.megnevezes) {
             kosar.value[i].mennyiseg += 1;
@@ -58,20 +68,11 @@ const kosarbaHelyez = async (id) => {
             mennyiseg: 1,
             osszeg: id.osszeg
         })
-    }}Swal.fire(
+    }Swal.fire(
         'Siker!',
         'A termék kosaradba került',
         'success'
-    )
-        if(stat.value == null){
-        Swal.fire(
-            'Jelentkezz be!',
-            'A vásárláshoz kérünk jelentkezz be!',
-            'warning'
-        )
-        router.push('/login')
-        
-    }
+    )}
 }
 
 
