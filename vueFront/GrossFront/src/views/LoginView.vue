@@ -18,21 +18,30 @@
         await axios.post('/login',{
             nev: felhnev.value,
             jelszo: jelszo.value,
-            adminNev: felhnev.value,
-            adminJel: jelszo.value
+            adminNev: adminNev.value,
+            adminJel: adminJel
         }).then(
+            
             function(response){
+                if(response.data.status == "succes"){
                 
-                if(felhnev.value != adminNev.value){
                 localStorage.setItem('token',JSON.stringify(response.data.token))
-                console.log(response.data.token)
                 router.push('/')
                 Swal.fire(
                 'Üdv '+felhnev.value+' !',
                 'Sikeres bejelentkezés',
                 'success'
                 )
-                }else if(felhnev.value == adminNev.value){
+                }else{
+                Swal.fire(
+                'Nem sikerült !',
+                'Sikertelen bejelentkezés',
+                'error'
+                ).then(
+                    router.push('/login')
+                )
+                }
+                if(felhnev.value == adminNev.value){
                 localStorage.setItem('token',JSON.stringify(response.data.token))
                 console.log(response.data.token)
                 router.push('/admin')

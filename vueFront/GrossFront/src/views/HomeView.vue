@@ -34,7 +34,7 @@ const router = useRouter();
         <div id="glog" class="col col-lg-4 col-md-4 col-sm-12">
           <img id="logo" src="../../kepek/grosskidz_logo.jpg" class="responsive" alt="">
         </div>
-        <div id="about" class="col col-lg-4 col-md-4 col-sm-12">
+        <div id="About" class="col col-lg-4 col-md-4 col-sm-12">
           <div class="Head">
             <h3>Termék infók</h3>
           </div><br>
@@ -148,12 +148,19 @@ body {
 </style>
 
 <style>
+#About{
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: whitesmoke;
+}
 #about {
   border-top: 0px;
   border-style: solid;
   padding: 15px;
   height: 25%;
   display: block;
+  
 }
 
 #navi {

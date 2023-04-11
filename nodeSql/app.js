@@ -13,7 +13,6 @@ try {
 
     // app.use('/auth', useAuth)
     // app.use('/login', login);
-
     // app.use('/vasarlas')
 
     app.listen(port, () => {

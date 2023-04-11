@@ -2,6 +2,7 @@
     import axios from 'axios'
     import { onMounted,ref } from 'vue';
     import { useRoute,useRouter } from 'vue-router';
+    import Swal from 'sweetalert2'
 
     const router = useRouter();
     const felhasznalonev = ref('');
@@ -21,9 +22,23 @@
             jelszo2: jelszo2.value
         }).then(
             function(response){
+                console.log(response.data.value)
                 if(response.data.status == 'succesful'){
-                    outPut.value = 'sikeres regisztráció'
+                    Swal.fire(
+                    'Sikeres regisztráció',
+                    'A bejelentkezés oldalon már be is jelentkezhetsz',
+                    'success'
+                    ).then(
                     router.push('/login')
+                    )
+                }else if(response.data.status == 'foglalt'){
+                    Swal.fire(
+                    'Nem sikerült !',
+                    'Krjük próbáld újra',
+                    'error' 
+                    ).then(
+                    router.push('/register')
+                    )
                 }
             }
         )
