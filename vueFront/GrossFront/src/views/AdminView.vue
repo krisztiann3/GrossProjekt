@@ -1,7 +1,8 @@
 <script setup>
 import axios from 'axios';
-import { reactive } from 'vue';
+import { reactive, shallowReadonly } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Swal from 'sweetalert2'
 
 const route = useRoute()
 const router = useRouter()
@@ -26,7 +27,13 @@ const feltolt = async () => {
         meret: ujAdatok.meret,
         osszeg: ujAdatok.osszeg,
         megnevezes: ujAdatok.megnevezes
-    })
+    }).then(
+        Swal.fire(
+        'Sikeres feltöltés',
+        'Az új terméked már a rendszer része.',
+        'success'
+    )
+    )
 }
 
 </script>

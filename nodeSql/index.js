@@ -53,7 +53,7 @@ const query = util.promisify(db.query).bind(db);
 
 
 
-// Blacklist tokenek kezelése
+// Tokenek kezelése
 async function auth(req, res, next) {
     const token = req.headers.authorization
     try {
@@ -201,11 +201,11 @@ app.post('/register', async (req, res) => {
     }
     try {
         const users = await query("SELECT email, felhasznalo FROM bejelentkezes WHERE email = ? OR felhasznalo = ?", [emailcim, felhasznalonev])
-        if (users.lenght > 0) {
+        if (users.length > 0) {
             return res.status(400).json({
                 error: 'foglalt'
             })
-        }
+        }else if(users.length <= 0){
 
         const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(jelszo, salt)
@@ -213,7 +213,7 @@ app.post('/register', async (req, res) => {
         const result = await query('INSERT INTO bejelentkezes (felhasznalo, email, jelszo) VALUES (?,?,?)', [felhasznalonev, emailcim, hash])
         return res.status(201).json({
             status: 'succesful'
-        })
+        })}
     } catch (error) {
         return res.status(500).json({
             error: error.message
@@ -312,7 +312,7 @@ app.post('/login', async (req, res) => {
 
     if (!nev || !jelszo) {
         return res.status(400).json({
-            message: 'hibás adatok'
+            message: 'Hiányos adatok'
         });
     }
     try {
@@ -353,4 +353,4 @@ app.post('/login', async (req, res) => {
 )
 
 module.exports = app
-// app.listen(8080, () => { console.log("Megy a szerver") });
+app.listen(8080, () => { console.log("Megy a szerver") });
