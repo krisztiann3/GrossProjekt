@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
 import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { ref } from 'vue';
 
 
 const user = ref('')
@@ -13,6 +13,7 @@ const logout = async () => {
   router.push('/login')
 }
 
+//van e token
 const vanE = ()=>{
   if(localStorage.getItem('token') == null){
     return false;
@@ -29,7 +30,7 @@ const isLoggedin = () =>{
   }
 }
 
-
+//átirányítás
 if (!localStorage.getItem('token')) {
   router.push('/login')
 }

@@ -124,7 +124,7 @@ app.get('/termekek/:termekek', async (req, res) => {
         });
     }
 })
-
+ //termék feltöltés
 app.post('/termekek/:termekek', async (req, res) => {
     const termekek = req.params.termekek
     const {
@@ -191,19 +191,19 @@ app.post('/register', async (req, res) => {
 
     if (!felhasznalonev || !emailcim || !jelszo) {
         return res.status(400).json({
-            error: 'hiányzó adatok'
+            status:'missingCred'
         });
     }
     if (jelszo != jelszo2) {
         return res.status(400).json({
-            error: 'A két jelszó nem egyezik'
+            status:'passwordError'
         });
     }
     try {
         const users = await query("SELECT email, felhasznalo FROM bejelentkezes WHERE email = ? OR felhasznalo = ?", [emailcim, felhasznalonev])
         if (users.length > 0) {
             return res.status(400).json({
-                error: 'foglalt'
+                status:'inUse'
             })
         }else if(users.length <= 0){
 
@@ -266,7 +266,7 @@ app.post('/vasarlas', auth, async (req, res) => {
         .text('GrossKidz számlája!', 120, 120)
         .underline(120, 120, 360, 27, { color: '#000000' })
 
-
+    //lekért kosár formázása és termék adatok kiírása
     for (let i = 0; i < kosar.length; i++) {
         doc.scale(0.6)
 

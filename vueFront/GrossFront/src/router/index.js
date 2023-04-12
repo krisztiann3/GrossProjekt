@@ -66,15 +66,6 @@ const router = createRouter({
       name: 'Admin',
       component: AdminView
     }
-    
-    // {
-    //   path: '/logout',
-    //   meta:{
-    //     requiresAuth:true     //majd a vásárlási felület mert védett útvonal
-    //   },
-    //   name: 'logout',
-    //   component: KijelentkezesView
-    // }
   ]
 })
 
