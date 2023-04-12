@@ -95,7 +95,7 @@ const uresE = async (kosar) => {
                         <div id="megnev">Termék megnevezés: {{ items?.megnevezes }}</div>
                         <div id="menny">Darabszám: {{ items?.mennyiseg }}</div>
                         <div id="meret">Mérete: {{ items?.meret }}</div>
-                        <div id="ar">Ára: {{ items?.osszeg }}ft (termékenként)</div>
+                        <div id="ar">Ára: {{ items?.osszeg * items?.mennyiseg}}ft</div>
                         <div id="torol">
                             <button type="submit" @click="torol(id)">Törlés</button>
                         </div>
